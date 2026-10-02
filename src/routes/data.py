@@ -28,7 +28,7 @@ async def upload_file(
     app_settings: Settings = Depends(get_settings)
 ):
 
-    project_model = ProjectModel(
+    project_model = await ProjectModel.create_instance(
         db_client=request.app.db_client
     )
     project = await project_model.get_or_create_project(
@@ -78,7 +78,7 @@ async def process_endpoint(project_id: str,process: ProcessRequest,request: Requ
     process_controller = ProceseController(project_id=project_id)
     do_reset = process.do_reset
     
-    project_model = ProjectModel(
+    project_model = await ProjectModel.create_instance(
         db_client=request.app.db_client
         )
     project = await project_model.get_or_create_project(
@@ -106,7 +106,7 @@ async def process_endpoint(project_id: str,process: ProcessRequest,request: Requ
         )
         for i,chunk in enumerate(file_chunks)
     ]
-    chunk_model = ChunkModel(
+    chunk_model = await ChunkModel.create_instance(
             db_client=request.app.db_client
         )
     if do_reset == 1 :

@@ -15,5 +15,14 @@ class Project(BaseModel):
         if not value.isalnum():
             raise ValueError("project_id must contain only letters and numbers")
         return value
+    @classmethod
+    def get_indexes(cls):
+        return [
+            {
+                "key" : [("project_id",1)],
+                "name" : "project_id_index_1",
+                "unique" : True
+            }
+        ]
 
     model_config = ConfigDict(arbitrary_types_allowed=True)

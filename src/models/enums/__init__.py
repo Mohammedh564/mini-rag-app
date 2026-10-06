@@ -1,2 +1,3 @@
-from .ResponseEnums import ResponseSignal
-from .ProcessingEnums import ProcessingEnums
+from .ResponseEnum import ResponseSignal
+from .ProcessingEnum import ProcessingEnums
+from .AssetTypeEnum import AssetTypeEnum
